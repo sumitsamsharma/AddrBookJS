@@ -79,16 +79,29 @@ class Contact{
 
 }
 
+// UC3 : Create Addresss Book Array and Add Contacts
 let contact1 = new Contact("Bobby", "Deol", "Punjab", "Patiala", "PUnjab", "126292", "91 8179032121", "obby123@gmail.com")
 let contact2 = new Contact("Sanjay", "Datt", "OP in the chat", "Gurgaon", "Haryana", "352004", "91 9362287593", "op99@gmail.com")
 let contact3 = new Contact("Sumit", "Sharma", "Vapi", "Vapi", "Gujarat", "561004", "91 2984280202", "sumit11@gmail.com")
+let contact4 = new Contact("Sumit", "Sharma", "DLFF", "ABCD", "EFGH", "826 004", "91 4929280202", "sumit@gmail.com")
+let contact5 = new Contact("Sanjana", "Jain", "DLFF", "ABCD", "EFGH", "826 004", "91 4929280202", "sanjana@gmail.com")
 
+// UC7: No Duplicate Entry
 var addressBookArray = new Array()
-addressBookArray.push(contact1)
-addressBookArray.push(contact2)
-addressBookArray.push(contact3)    
+function addContact(contact){
+    let duplicateContact = findContact(contact.firstName, contact.lastName)
+    if(duplicateContact != null)
+        console.log("Can't Add Contact. Dupicate Contact Found.")
+    else
+        addressBookArray.push(contact)
+}
+addContact(contact1)
+addContact(contact2)
+addContact(contact3)
+addContact(contact4)
+addContact(contact5)
 
-
+// UC4: Find Contact by Name And Edit It.
 function findContact(fname, lname){
     let contactToEdit;
     for(let i = 0; i < addressBookArray.length; i++){
@@ -155,17 +168,20 @@ let param1 = prompt("Enter the First Name (contact to edit):  ")
 let param2 = prompt("Enter the Last Name (contact to edit):  ")
 findContactAndEdit(param1, param2)
 
-
+// UC5: Delete A Contact
 function deleteContact(fname, lname){
     let contactToDelete = findContact(fname. lname)
-    addressBookArray.pop(contactToDelete)
+    if(contactToDelete == null)
+        console.log("No Contact Found To Delete")
+    else
+        addressBookArray.pop(contactToDelete)
 }
-let contact4 = new Contact("Jayee", "Viru", "yello", "Bashah", "Kholi", "132 004", "91 9829280202", "veeru@gmail.com")
 addressBookArray.push(contact4)
-let param3 = prompt("Enter the First Name to delete:  ")
-let param4 = prompt("Enter the Last Name to delete:  ")
+let param3 = prompt("Enter the First Name (contact to delete):  ")
+let param4 = prompt("Enter the Last Name (contact to delete):  ")
 deleteContact(param3, param4)
 
+// UC6: Get Number of Contacts in Address Book
 function count(counter){
     return counter + 1;
 }
