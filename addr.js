@@ -197,19 +197,46 @@ function searchByCityState(place, choice){
     }
     return contacts;
 }
-console.log("1. Search By City \n2. Search By State")
+function searchByCityState(fname, lname, place, choice){
+    let contacts = new Array();
+    if(choice == 1)
+        contacts = addressBookArray.filter(con => con.city === place && con.firstName === fname && con.lastName === lname)
+    if(choice == 2)
+        contacts = addressBookArray.filter(con => con.state === place && con.firstName === fname && con.lastName === lname)
+    if(choice == 3)
+        contacts = addressBookArray.filter(con => con.city === place)
+    if(choice == 4)
+        contacts = addressBookArray.filter(con => con.state === place)
+    return contacts;
+}
+console.log("1. Search Particular Person By City \n2. Search Particular Person By State \n3. Search By City \n4. Search By State")
 let input = prompt("Enter your choice:  ")
 input = parseInt(input)
 let searchedContacts;
 switch (input){
     case 1:
         let city = prompt("Enter the city name:  ")
-        searchedContacts = searchByCityState(city, 1)
-        console.log("Contacts Found in " + city + " are:  " + searchedContacts.reduce(count, 0))
+        let fname1 = prompt("Enter the first name:  ")
+        let lname1 = prompt("Enter the last name:  ")
+        searchedContacts = searchByCityState(fname1, lname1, city, 1)
+        console.log("Contact Found is:  " + searchedContacts.toString())
         break
     case 2:
         let state = prompt("Enter the state name:  ")
-        searchedContacts = searchByCityState(state, 2)
-        console.log("Contacts Found in " + state + " are:  " + searchedContacts.reduce(count,0))
+        let fname2 = prompt("Enter the first name:  ")
+        let lname2 = prompt("Enter the last name:  ")
+        searchedContacts = searchByCityState(fname2, lname2, state, 2)
+        console.log("Contact Found is:  " + searchedContacts.toString())
+        break
+    case 3:
+        let cityAll = prompt("Enter the city name:  ")
+        searchedContacts = searchByCityState("","", cityAll, 3)
+        console.log("Contacts Found in " + cityAll + " are:  " + searchedContacts.toString())
+        break
+    case 4:
+        let stateAll = prompt("Enter the state name:  ")
+        
+        searchedContacts = searchByCityState("", "", stateAll, 4)
+        console.log("Contacts Found in " + stateAll +" are:  " + searchedContacts.toString())
         break
 }
