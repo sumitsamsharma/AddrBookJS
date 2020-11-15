@@ -186,3 +186,30 @@ function count(counter){
     return counter + 1;
 }
 console.log("Total Number of Contacts: " + addressBookArray.reduce(count, 0))
+
+function searchByCityState(place, choice){
+    let contacts = new Array();
+    if(choice == 1){
+        contacts = addressBookArray.filter(con => con.city === place)
+    }
+    if(choice == 2){
+        contacts = addressBookArray.filter(con => con.state === place)
+    }
+    return contacts;
+}
+console.log("1. Search By City \n2. Search By State")
+let input = prompt("Enter your choice:  ")
+input = parseInt(input)
+let searchedContacts;
+switch (input){
+    case 1:
+        let city = prompt("Enter the city name:  ")
+        searchedContacts = searchByCityState(city, 1)
+        console.log("Contacts Found in " + city + " are:  " + searchedContacts.reduce(count, 0))
+        break
+    case 2:
+        let state = prompt("Enter the state name:  ")
+        searchedContacts = searchByCityState(state, 2)
+        console.log("Contacts Found in " + state + " are:  " + searchedContacts.reduce(count,0))
+        break
+}
