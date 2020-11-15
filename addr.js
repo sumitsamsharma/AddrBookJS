@@ -213,7 +213,8 @@ console.log("1. Search Particular Person By City \n2. Search Particular Person B
 let input = prompt("Enter your choice:  ")
 input = parseInt(input)
 let searchedContacts;
-switch (input){
+switch (input)
+{
     case 1:
         let city = prompt("Enter the city name:  ")
         let fname1 = prompt("Enter the first name:  ")
@@ -240,3 +241,13 @@ switch (input){
         console.log("Contacts Found in " + stateAll +" are:  " + searchedContacts.toString())
         break
 }
+
+// UC11: Sort the contacts alphabetically
+console.log("Do You Want to Sort the Contacts:  \n1. YES \n2. NO")
+let inputSort = parseInt(prompt("Enter your choice:  "))
+if(inputSort == 1){
+    addressBookArray.sort();
+    for(let i = 0; i < addressBookArray.length; i++)
+        console.log(addressBookArray[i].toString())
+}
+    
