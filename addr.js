@@ -10,6 +10,7 @@ class Contact{
         this.email = params[7];
     }
 
+    // UC2 : Validate Contact Details
     get firstName(){ return this._firstName}
     set firstName(firstName){
         let nameRegex = RegExp('^[A-Z]{1}[a-zA-Z]{2,}$')
@@ -82,20 +83,23 @@ let contact1 = new Contact("Bobby", "Deol", "Punjab", "Patiala", "PUnjab", "1262
 let contact2 = new Contact("Sanjay", "Datt", "OP in the chat", "Gurgaon", "Haryana", "352004", "91 9362287593", "op99@gmail.com")
 let contact3 = new Contact("Sumit", "Sharma", "Vapi", "Vapi", "Gujarat", "561004", "91 2984280202", "sumit11@gmail.com")
 
-
 var addressBookArray = new Array()
 addressBookArray.push(contact1)
 addressBookArray.push(contact2)
 addressBookArray.push(contact3)    
 
-const prompt = require('prompt-sync')();
+
 function findContact(fname, lname){
     let contactToEdit;
     for(let i = 0; i < addressBookArray.length; i++){
         if(addressBookArray[i].firstName === fname && addressBookArray[i].lastName === lname)
             contactToEdit = addressBookArray[i]
     }
-
+    return contactToEdit;
+}
+const prompt = require('prompt-sync')();
+function findContactAndEdit(fname, lname){
+    let contactToEdit = findContact(fname,lname)
     if(contactToEdit == null)
         console.log("No Contact Found To Edit")
     else{
@@ -147,6 +151,17 @@ function findContact(fname, lname){
     }
 }
 
-let param1 = prompt("Enter the First Name:  ")
-let param2 = prompt("Enter the Last Name:  ")
-findContact(param1, param2)
+let param1 = prompt("Enter the First Name (contact to edit):  ")
+let param2 = prompt("Enter the Last Name (contact to edit):  ")
+findContactAndEdit(param1, param2)
+
+
+function deleteContact(fname, lname){
+    let contactToDelete = findContact(fname. lname)
+    addressBookArray.pop(contactToDelete)
+}
+let contact4 = new Contact("Jayee", "Viru", "yello", "Bashah", "Kholi", "132 004", "91 9829280202", "veeru@gmail.com")
+addressBookArray.push(contact4)
+let param3 = prompt("Enter the First Name to delete:  ")
+let param4 = prompt("Enter the Last Name to delete:  ")
+deleteContact(param3, param4)
